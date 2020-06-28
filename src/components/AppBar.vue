@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="gray" :height="isTablet() ? '60' : '92'">
+    <v-app-bar app id="navbar" color="gray" :height="isTablet() ? '60' : '92'">
       <v-app-bar-nav-icon class="d-flex d-sm-flex d-md-none"></v-app-bar-nav-icon>
       <div class="d-flex align-center">
         <v-btn class="label-page">
@@ -74,6 +74,11 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
+#navbar {
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 14px 4px #7171713d;
+}
+
 .label-page {
   margin-right: 20px;
   background-image: linear-gradient(210deg, #fa7d0b, #dc3c5b);
