@@ -11,8 +11,8 @@
       show-select
       id="table"
     >
-      <template>
-        <v-icon>mdi-dots-horizontal</v-icon>
+      <template v-slot:item.actions="{ item }">
+        <v-icon @click="item">mdi-dots-horizontal</v-icon>
       </template>
     </v-data-table>
     <div class="text-center">
@@ -28,6 +28,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import axios from 'axios';
 
 export default Vue.extend({
   name: 'UserList',
@@ -44,42 +45,20 @@ export default Vue.extend({
       { text: 'STATUS', sortable: false, value: 'status' },
       { text: 'AÇÕES', sortable: false, value: 'actions' },
     ],
-    desserts: [
-      {
-        name: 'ANPINA',
-        email: 'antonio.pina@lorem.com.br',
-        includeDate: '28/05/2019',
-        alterDate: '30/05/2019',
-        rules: '01',
-        status: 'ATIVO',
-      },
-      {
-        name: 'ANPINA 2',
-        email: 'antonio.pina2@lorem.com.br',
-        includeDate: '28/05/2019',
-        alterDate: '30/05/2019',
-        rules: '01',
-        status: 'ATIVO',
-      },
-      {
-        name: 'ANPINA 3',
-        email: 'antonio.pina3@lorem.com.br',
-        includeDate: '28/05/2019',
-        alterDate: '30/05/2019',
-        rules: '01',
-        status: 'ATIVO',
-      },
-      {
-        name: 'ANPINA 4',
-        email: 'antonio.pina4@lorem.com.br',
-        includeDate: '28/05/2019',
-        alterDate: '30/05/2019',
-        rules: '01',
-        status: 'ATIVO',
-      },
-    ],
-    overlay: false,
+    desserts: [],
   }),
+
+  methods: {
+    getUsers() {
+      axios.get('http://localhost:4200/users').then((users) => {
+        this.desserts = users.data;
+      });
+    },
+  },
+
+  mounted() {
+    this.getUsers();
+  },
 });
 </script>
 <style lang="scss">
