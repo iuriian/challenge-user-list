@@ -35,7 +35,13 @@
       <v-spacer class="d-none d-sm-none d-md-flex"></v-spacer>
 
       <div class="d-none d-sm-none d-md-flex">
-        <v-btn :borderless="true" class="filter" min-width="40" color="white">
+        <v-btn
+          :borderless="true"
+          class="filter-btn"
+          min-width="40"
+          color="white"
+          @click="filter = true"
+        >
           <v-icon>mdi-chart-gantt</v-icon>
         </v-btn>
         <v-btn class="add-user" color="violet">
@@ -55,6 +61,51 @@
         </v-btn>
       </div>
     </v-app-bar>
+
+    <v-navigation-drawer
+      v-if="filter"
+      v-model="filter"
+      class="d-none d-sm-none d-md-flex filter-container"
+      absolute
+      temporary
+      right
+      width="400"
+    >
+      <v-list nav dense class="pa-0">
+        <v-list-item class="filter-header">
+          <v-list-item-icon>
+            <v-icon>mdi-chart-gantt</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title id="title">FILTROS</v-list-item-title>
+          <v-btn class="close-btn" color="white" @click="filter = false" :borderless="true">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-list-item>
+      </v-list>
+      <v-list id="filter-content">
+        <v-list-item class="description">
+          <p>
+            Utilize os filtros abaixo para refinar os resultados da tabela,
+            clique no botão APLICAR para salvar as alterações.
+          </p>
+        </v-list-item>
+        <v-list-item class="filter-item">
+          <v-icon>mdi-calendar-range</v-icon>
+          <p>TODAS AS DATAS DE INCLUSÃO</p>
+        </v-list-item>
+        <v-list-item class="filter-item">
+          <v-icon>mdi-calendar-range</v-icon>
+          <p>TODAS AS DATAS DE ALTERAÇÃO</p>
+        </v-list-item>
+        <v-list-item class="filter-item">
+          <v-icon>mdi-chart-bubble</v-icon>
+          <p>ATIVOS E INATIVOS</p>
+        </v-list-item>
+        <div class="d-flex justify-center">
+          <v-btn outlined>APLICAR</v-btn>
+        </div>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -64,7 +115,9 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'AppBar',
 
-  data: () => ({}),
+  data: () => ({
+    filter: false,
+  }),
 
   methods: {
     isTablet() {
@@ -74,6 +127,8 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
 #navbar {
   background-color: #f5f5f5;
   box-shadow: 0px 0px 14px 4px #7171713d;
@@ -115,7 +170,7 @@ export default Vue.extend({
   }
 }
 
-.filter.v-btn {
+.filter-btn.v-btn {
   min-height: 48px;
   box-shadow: 0px 0px 10px 0px #7171713d;
 }
@@ -141,6 +196,76 @@ export default Vue.extend({
 
   .v-icon {
     margin-right: 8px;
+  }
+}
+
+.filter-container {
+  background-color: #f5f5f5;
+
+  .filter-header {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 14px 4px #7171713d;
+    padding: 26px;
+
+    #title {
+      font-family: "Audiowide", cursive;
+      font-size: 16px;
+    }
+
+    .close-btn.v-btn {
+      padding: 0px;
+      min-width: 40px;
+      min-height: 40px;
+      box-shadow: 0px 0px 10px 0px #7171713d;
+    }
+  }
+
+  #filter-content {
+    padding: 40px 28px 10px 28px;
+
+    .description {
+      font-size: 0.92rem;
+      font-style: italic;
+      opacity: 0.7;
+      padding: 0px;
+      margin-bottom: 20px;
+
+      p::after {
+        content: "";
+        position: absolute;
+        opacity: 0.1;
+        width: 24px;
+        height: 4px;
+        background-color: #000;
+        left: 0;
+        bottom: 0;
+      }
+    }
+
+    .filter-item {
+      padding: 0px;
+
+      p {
+        color: #d83367;
+        padding: 0px;
+        margin: 0px;
+        font-weight: 500;
+        font-size: 16px;
+        margin-left: 8px;
+      }
+
+      .v-icon {
+        font-size: 20px;
+        opacity: 0.6;
+      }
+    }
+
+    .v-btn {
+      color: #d83367;
+      width: 100%;
+      min-height: 60px;
+      margin-top: 16px;
+    }
   }
 }
 </style>

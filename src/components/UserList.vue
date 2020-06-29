@@ -11,8 +11,8 @@
       show-select
       id="table"
     >
-      <template v-slot:item.actions="{ item }">
-        <v-icon @click="showOptions(item)">mdi-dots-horizontal</v-icon>
+      <template>
+        <v-icon>mdi-dots-horizontal</v-icon>
       </template>
     </v-data-table>
     <div class="text-center">
@@ -47,7 +47,7 @@ export default Vue.extend({
     desserts: [
       {
         name: 'ANPINA',
-        email: 'antonio.pina@tvglobo.com.br',
+        email: 'antonio.pina@lorem.com.br',
         includeDate: '28/05/2019',
         alterDate: '30/05/2019',
         rules: '01',
@@ -55,7 +55,7 @@ export default Vue.extend({
       },
       {
         name: 'ANPINA 2',
-        email: 'antonio.pina2@tvglobo.com.br',
+        email: 'antonio.pina2@lorem.com.br',
         includeDate: '28/05/2019',
         alterDate: '30/05/2019',
         rules: '01',
@@ -63,7 +63,7 @@ export default Vue.extend({
       },
       {
         name: 'ANPINA 3',
-        email: 'antonio.pina3@tvglobo.com.br',
+        email: 'antonio.pina3@lorem.com.br',
         includeDate: '28/05/2019',
         alterDate: '30/05/2019',
         rules: '01',
@@ -71,7 +71,7 @@ export default Vue.extend({
       },
       {
         name: 'ANPINA 4',
-        email: 'antonio.pina4@tvglobo.com.br',
+        email: 'antonio.pina4@lorem.com.br',
         includeDate: '28/05/2019',
         alterDate: '30/05/2019',
         rules: '01',
@@ -80,12 +80,6 @@ export default Vue.extend({
     ],
     overlay: false,
   }),
-
-  methods: {
-    showOptions(item: object) {
-      this.overlay = !this.overlay;
-    },
-  },
 });
 </script>
 <style lang="scss">
