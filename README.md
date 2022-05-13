@@ -9,7 +9,7 @@ Implementar um layout baseado em um wireframe recebido para o desafio cumprindo 
 ## Tecnologias utilizadas
 
 - Vue CLI 4.2.0
-- Bootstrap 4.4.1
+- Vuetify 2.2.11
 
 ## Como instalar
 
